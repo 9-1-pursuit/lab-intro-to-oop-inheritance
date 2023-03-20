@@ -35,9 +35,10 @@ class Tamagotchi {
     }
   }
   play() {
+      
     if (this.sick) {
-      this.mood += 2;
-      this.full += 1;
+        this.mood -=1
+        this.energy -=1
     } else if (this.mood > 9) {
       console.log("I am too happy to play");
       this.energy -= 2;
@@ -50,7 +51,8 @@ class Tamagotchi {
       this.energy -= 1;
       this.full -= 1;
     }
-  }
+  
+}
 
 }
 // Do not edit below this line
