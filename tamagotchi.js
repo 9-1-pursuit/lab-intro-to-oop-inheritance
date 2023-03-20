@@ -81,6 +81,12 @@ class Tamagotchi {
             this.energy -= 2
         }
     }
+    badGuardian(){
+        if(this.energy <= 0 || this.mood <= 0 || this.full <= 0){
+            this.rehomed = true
+            console.log('tamagotchi has been rehomed')
+        }
+    }
 }
 const testObj = {name: "test", full:3, mood:5, sick:false, rehomed:false}
 const test = new Tamagotchi("test", 4,9,5, false, false )
