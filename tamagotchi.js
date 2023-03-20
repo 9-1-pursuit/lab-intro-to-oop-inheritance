@@ -55,8 +55,21 @@ sleep(){
     this.energy += 4;
     this.full -=3
 }
-
-
+timePasses(){
+   if(this.sick){
+    this.mood-= 3
+    this.energy-=2
+    this.full -=2
+   } 
+   else{
+    this.mood-=2
+    this.full-=1
+    this.energy-=1
+   }
+}
+badGuardian(){
+    
+}
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
