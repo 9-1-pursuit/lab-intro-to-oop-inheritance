@@ -5,15 +5,26 @@ class Food {
     this.daysToSpoil = daysToSpoil; // value is not known yet =>
     this.fresh = fresh || true;
   }
-  prepared(name) {
-    console.log(`${name} is being prepared`);
+  prepare() {
+    console.log(`${this.name} is being prepared`);
+    return;
   }
-  isFresh(daysToSpoil, name) {
-    if (daysToSpoil) {
-      console.log(`There are ${daysToSpoil} days left before ${name} spoils`);
+  isFresh() {
+    if (this.daysToSpoil > 0) {
+      console.log(
+        `There are ${this.daysToSpoil} days left before ${this.name} spoils.`
+      );
     } else {
-      `${name} has spoiled.`;
+      console.log(`${this.name} has spoiled.`);
     }
+  }
+  // Day Pass =>
+  aDayPasses() {
+    this.daysToSpoil--;
+    // if (this.daysToSpoil <= 0) {
+    //   this.fresh = false;
+    // }
+    this.isFresh();
   }
 }
 // Do not edit below this line
