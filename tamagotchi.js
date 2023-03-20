@@ -26,6 +26,11 @@ class Tamagotchi {
     My energy is: ${this.energy}
     ${health}`);
   }
+  eat() {
+    this.full = this.full + 2;
+    this.energy--;
+    this.full > 10 ? (this.sick = true) : (this.sick = false);
+  }
 }
 const fluffy = new Tamagotchi("Fluffy");
 
