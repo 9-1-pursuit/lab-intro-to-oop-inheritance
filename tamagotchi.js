@@ -65,6 +65,22 @@ class Tamagotchi {
             this.energy -= 1
         } 
     }
+    sleep(){
+        this.energy += 4
+        this.full -= 3
+    }
+    timePasses(){
+        if(!this.sick){
+            this.mood -= 2
+            this.full -= 1
+            this.energy -= 1
+        }
+        else {
+            this.mood -= 3
+            this.full -= 2
+            this.energy -= 2
+        }
+    }
 }
 const testObj = {name: "test", full:3, mood:5, sick:false, rehomed:false}
 const test = new Tamagotchi("test", 4,9,5, false, false )
