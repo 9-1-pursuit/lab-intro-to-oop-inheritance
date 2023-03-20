@@ -20,19 +20,20 @@ class Tamagotchi {
     }
 
     eat(){
-        this.fullness += 2
+        this.full += 2
         this.energy -= 1
-        this.fullness > 10 ? this.sick=true: this.sick=false
+        this.full > 10 ? this.sick=true: this.sick=false
     }
 
     medicate(){
-        sick = false
-        if (sick === true){
-            full = 9
-            energy -=3
+        if (this.sick === true){
+            this.full = 9
+            this.energy -=3
+            this.sick = false
     } else {
-        console.log "refusal to take medicine"
+        console.log ("refusal to take medicine")
     }
+  }
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
