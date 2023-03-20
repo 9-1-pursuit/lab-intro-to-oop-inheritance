@@ -39,6 +39,7 @@ class Tamagotchi {
         if(this.sick){
             this.full = 9
             this.energy -= 3
+            this.sick = false
         }
         else {
             console.log(`refusal to take medicine`)
@@ -46,9 +47,23 @@ class Tamagotchi {
         }
     }
     play(){
-        this.mood += 2
-        this.energy -= 1
-        this.full -= 1
+        if(!this.sick && this.mood < 9 && this.energy > 3){
+            this.mood += 2
+            this.energy -= 1
+            this.full -= 1
+        } 
+        if(this.sick){
+            this.mood -= 1
+            this.energy -= 1
+        }
+        if(this.mood > 9){
+            this.energy -= 2
+            this.full -= 1
+        }
+        if(this.energy <= 3){
+            console.log("I am too tired to play")
+            this.energy -= 1
+        } 
     }
 }
 const testObj = {name: "test", full:3, mood:5, sick:false, rehomed:false}
