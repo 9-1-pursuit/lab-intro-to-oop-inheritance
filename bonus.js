@@ -15,10 +15,6 @@ class BadFood extends Food {
     }
     fight(rival){
         // while loop or recursion -> fight to the death lol
-        // let myAttack = this.weapons[Math.floor(Math.random() * this.weapons.length)].hitPoints
-        // let rivalAttack = rival.weapons[Math.floor(Math.random() * rival.weapons.length)].hitPoints
-        // console.log(myAttack,rivalAttack)
-
         let myHealth = this.daysToSpoil
         let rivalHealth = rival.daysToSpoil
 
@@ -36,20 +32,27 @@ class BadFood extends Food {
             
             console.log(`${this.name} uses ${myAttackName}!! \n${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
             
-            if(rivalHealth < 0) break;
+            if(rivalHealth < 0){
+                rival.fresh = false
+                break;}
 
             myHealth -= rivalAttackPoints
             
             console.log(`${rival.name} uses ${rivalAttackName}!!! \n${this.name} is down ${rivalAttackPoints} \n${this.name} ${myHealth} ${rival.name} ${rivalHealth}`)
            
-            if(myHealth < 0) break;
+            if(myHealth < 0) {
+                this.fresh = false
+                break;
+            }
         }
-        return rivalHealth <= 0 ? `${this.name} is the winner!` : `Better luck next time, ${rival.name} was better.`
-        
-    }
-    
+        // console.log(this.fresh, rival.fresh)
+        return rivalHealth <= 0 ? 
+        `${this.name} is the winner!` : 
+        `Better luck next time, ${rival.name} was better.`
+    }  
 }
 
-const testDonut = new BadFood("Donut", 22, false, donut)
+const testDonut = new BadFood("Donut", 22, true, donut)
 const testPizza = new BadFood("Pizza", 18, true, pizza)
+console.log(testDonut.prepare(), testPizza.prepare())
 console.log(testDonut.fight(testPizza))
