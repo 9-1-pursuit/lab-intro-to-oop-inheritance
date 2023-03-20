@@ -18,7 +18,7 @@ class Tamagotchi {
     );
   }
   eat() {
-    this.eat += 2;
+    this.full += 2;
     this.energy -= 1;
     if (this.full > 10) {
       this.sick = true;
@@ -26,8 +26,9 @@ class Tamagotchi {
   }
   medicate() {
     if (this.sick) {
-      this.full = 9;
-      this.energy -= 3;
+    this.sick = false;
+    this.full = 9;
+   this.energy -= 3;
     } else {
       console.log(`Refusal to take medicine`);
       this.energy -= 1;
@@ -49,10 +50,6 @@ class Tamagotchi {
       this.energy -= 1;
       this.full -= 1;
     }
-  }
-  sleep() {
-    this.energy += 4;
-    this.full -= 3;
   }
 
 }
