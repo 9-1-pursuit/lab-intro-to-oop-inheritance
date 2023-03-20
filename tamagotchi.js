@@ -18,6 +18,14 @@ class Tamagotchi {
       `Energy: ${this.energy}, Fullness: ${this.full}, Mood: ${this.mood}, Sick: ${this.sick}`
     );
   }
+
+  eat() {
+    this.full += 2;
+    this.energy -= 1;
+    if (this.full > 10) {
+      this.sick = true;
+    }
+  }
 }
 
 // Do not edit below this line
