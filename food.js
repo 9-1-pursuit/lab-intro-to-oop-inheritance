@@ -27,5 +27,16 @@ class Food {
     this.isFresh();
   }
 }
+// create a new Food 
+const applePie = new Food("applePie", 6)
+applePie.prepare() // applePie is being prepared 
+applePie.isFresh()
+// Spoil decrement every time day pass is called 
+applePie.aDayPasses() // there are 6 days before applePie spoils
+applePie.aDayPasses()
+applePie.aDayPasses()
+applePie.aDayPasses() // there are 3 days before applePie spoils
+// ...  applePie has spoiled. 
+
 // Do not edit below this line
 module.exports = Food;
