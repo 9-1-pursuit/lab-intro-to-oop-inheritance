@@ -24,5 +24,10 @@ class Food {
   }
 }
 
+let iceCream = new Food("ice cream", 10, true);
+console.log(iceCream.name);
+console.log(iceCream.prepare());
+console.log(iceCream.isFresh());
+console.log(iceCream.aDayPasses());
 // Do not edit below this line
 module.exports = Food;
