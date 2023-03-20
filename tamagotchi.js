@@ -18,6 +18,7 @@ class Tamagotchi {
   greet() {
     console.log(`Hello, I'm ${this.name}!`);
   }
+
   status() {
     let health = this.sick === true ? "I am sick" : "I am not sick";
     console.log(`  
@@ -26,6 +27,7 @@ class Tamagotchi {
     My energy is: ${this.energy}
     ${health}`);
   }
+
   eat() {
     this.full = this.full + 2;
     this.energy--;
