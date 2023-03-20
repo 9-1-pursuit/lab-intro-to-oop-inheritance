@@ -13,30 +13,58 @@ class BadFood extends Food {
         const index = Math.floor(Math.random() * arr.length)
         console.log(arr[index])  
     }
+    // SuperBonus - heal method
+    heal(val) {
+        val+= 5
+        console.log(`${this.name} used HEAL, daysToSpoil increased by 5`)
+    }
     fight(rival){
+        // randomly selects an action (weapon, heal or block)
+        const actions = ["weapons", "block", "heal"]
         // while loop or recursion -> fight to the death lol
         let myHealth = this.daysToSpoil
         let rivalHealth = rival.daysToSpoil
 
         while(myHealth > 0 || rivalHealth > 0){
-            // random select/ retrieve attack points/name
-            const myIndex = Math.floor(Math.random() * this.weapons.length)
-            let myAttackPoints = this.weapons[myIndex].hitPoints
-            let myAttackName = this.weapons[myIndex].name
+            // random select/ retrieve attack type : points/name
+            let myAction = actions[Math.floor(Math.random() * actions.length)]
+            let rivalAction = actions[Math.floor(Math.random() * actions.length)]
+
+            // My Turn
+            if(myAction === "weapons" && rivalAction !== "block"){
+                const myIndex = Math.floor(Math.random() * this.weapons.length)
+                let myAttackPoints = this.weapons[myIndex].hitPoints
+                let myAttackName = this.weapons[myIndex].name
+                rivalHealth -= myAttackPoints
             
-            const rivalIndex = Math.floor(Math.random() * rival.weapons.length)
-            let rivalAttackPoints = rival.weapons[rivalIndex].hitPoints
-            let rivalAttackName = rival.weapons[rivalIndex].name
+                console.log(`${this.name} uses ${myAttackName}!! \n${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+            }
+            if(myAction === "weapons" && rivalAction === "block"){
+                console.log(`${rival.name} has BLOCKED ${this.name}'s attack!`)
+            }
             
-            rivalHealth -= myAttackPoints
+            if(myAction === "heal"){
+                this.heal(myHealth)
+            }
+
+            // Rivals Turn
+            if(rivalAction === "weapon" && myAction !== "block"){
+                const rivalIndex = Math.floor(Math.random() * rival.weapons.length)
+                let rivalAttackPoints = rival.weapons[rivalIndex].hitPoints
+                let rivalAttackName = rival.weapons[rivalIndex].name
+                myHealth -= rivalAttackPoints
+
+                console.log(`${rival.name} uses ${rivalAttackName}!!! \n${this.name} is down ${rivalAttackPoints} \n${this.name} ${myHealth} ${rival.name} ${rivalHealth}`)
+            }
+           
             
-            console.log(`${this.name} uses ${myAttackName}!! \n${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+            
             
             if(rivalHealth < 0){
                 rival.fresh = false
                 break;}
 
-            myHealth -= rivalAttackPoints
+            
             
             console.log(`${rival.name} uses ${rivalAttackName}!!! \n${this.name} is down ${rivalAttackPoints} \n${this.name} ${myHealth} ${rival.name} ${rivalHealth}`)
            
@@ -56,3 +84,12 @@ const testDonut = new BadFood("Donut", 22, true, donut)
 const testPizza = new BadFood("Pizza", 18, true, pizza)
 console.log(testDonut.prepare(), testPizza.prepare())
 console.log(testDonut.fight(testPizza))
+
+/* 
+    SUPER BONUS ADDITONALS
+        - Add a heal method that allows the food to increase daysToSpoil
+        - Add block method that allows the food to take 0 damage, no matter what
+        - Add an action selector method that randomly chooses between fight, heal and block
+        - Add a victory method that announces the victor
+        - Create a simple web app that allows you to play as a single or two player by using buttons and seeing status updates
+*/
