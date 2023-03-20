@@ -1,5 +1,7 @@
 const  Food  = require("./food.js");
-// console.log(Food)
+const { donut, pizza } = require("./bonusData.js")
+console.log(donut, pizza)
+
 class BadFood extends Food {
     constructor(name, daysToSpoil, fresh=true){
         super(name, daysToSpoil, fresh)
@@ -12,7 +14,7 @@ class BadFood extends Food {
         const index = Math.floor(Math.random() *2)
         console.log(arr[index])  
     }
-    fight(){
+    fight(classVal){
 
     }
     
