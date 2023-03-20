@@ -10,7 +10,10 @@ class Tamagotchi{
   }
 // Methods
 greet(){
-    conseol.log(`Hello, I'm ${this.name}!`)
+    console.log(`Hello, I'm ${this.name}!`)
+}
+status(){
+    console.log(`Energy: ${this.energy}, Fullness: ${this.full}, Mood: ${this.mood}, Sick: ${this.sick}`)
 }
 }
 // Do not edit below this line
