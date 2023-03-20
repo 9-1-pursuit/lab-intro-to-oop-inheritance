@@ -18,6 +18,14 @@ class Tamagotchi {
   greet() {
     console.log(`Hello, I'm ${this.name}!`);
   }
+  status() {
+    let health = this.sick === true ? "I am sick" : "I am not sick";
+    console.log(`  
+    My mood is: ${this.mood} 
+    I am this full: ${this.full}
+    My energy is: ${this.energy}
+    ${health}`);
+  }
 }
 const fluffy = new Tamagotchi("Fluffy");
 
