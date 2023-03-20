@@ -1,11 +1,13 @@
 const  Food  = require("./food.js");
 const { donut, pizza } = require("./bonusData.js")
-console.log(donut, pizza)
 
 class BadFood extends Food {
-    constructor(name, daysToSpoil, fresh=true){
+    constructor(name, daysToSpoil, fresh=true, weapons){
         super(name, daysToSpoil, fresh)
-        this.weapon = [{hitPoints : 3}, {hitPoints : 4}, {hitPoints : 5}]
+        // no weapons param
+        // this.weapons = [donut, pizza]
+        // with weapons param
+        this.weapons = weapons
     }
     prepare(){
         const msg1 = `I am ${this.name} and my calories are too high to count!`
@@ -20,5 +22,5 @@ class BadFood extends Food {
     
 }
 
-const testInherit = new BadFood("testFood", 2, false)
-console.log(testInherit.prepare())
+const testInherit = new BadFood("testFood", 2, false, donut)
+console.log(testInherit.weapons)
