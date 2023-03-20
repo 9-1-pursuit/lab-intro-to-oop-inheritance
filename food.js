@@ -14,7 +14,7 @@ class Food {
         }
     }
     aDayPasses(){
-        this.daysToSpoil = this.daysToSpoil - 1
+        this.daysToSpoil -= 1
     }
 }
 
