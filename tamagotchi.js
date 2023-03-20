@@ -23,6 +23,11 @@ class Tamagotchi {
       this.fresh = false;
     }
   }
+
+  aDayPasses() {
+    this.daysToSpoil--;
+    this.isFresh();
+  }
 }
 
 // Do not edit below this line
