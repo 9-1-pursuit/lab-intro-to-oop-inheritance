@@ -15,6 +15,9 @@ class Tamagotchi {
       (this.sick = sick),
       (this.rehomed = rehomed);
   }
+  greet() {
+    console.log(`Hello, I'm ${this.name}!`);
+  }
 }
 const fluffy = new Tamagotchi("Fluffy");
 
