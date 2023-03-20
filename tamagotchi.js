@@ -56,6 +56,18 @@ class Tamagotchi {
         this.energy += 4
         this.full -= 3
     }
+    timePasses(){
+        return this.sick 
+            ? ( this.mood -= 3, 
+                this.full -= 2,
+                this.energy -=2
+                ) : (
+                    this.mood -= 2,
+                    this.full -= 1,
+                    this.energy -= 1
+                ) 
+
+    }
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
