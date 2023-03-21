@@ -7,21 +7,27 @@ class Food {
   }
 
   prepare() {
-    console.log(`food ${this.name} is being prepared`);
+    console.log(`${this.name} is being prepared`);
   }
 
-  isfresh() {
+  isFresh() {
     if (this.daysToSpoil >= 1) {
       console.log(
         `There are ${this.daysToSpoil} days left before ${this.name} spoils.`
       );
     } else {
-      console.log(`${this.name} is spoiled.`);
+      console.log(`${this.name} has spoiled.`);
     }
   }
+
+  aDayPasses() {
+    this.daysToSpoil--;
+    this.isFresh();
+  }
 }
-const banana = new Food("banana", 1, false);
-console.log(banana.prepare(), banana.isfresh());
+// const banana = new Food("banana", 1, false);
+// console.log(banana.prepare());
+// console.log(banana.isFresh());
 
 // Do not edit below this line
 module.exports = Food;
