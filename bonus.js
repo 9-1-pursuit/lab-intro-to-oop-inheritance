@@ -14,6 +14,10 @@ class BadFood extends Food {
         return arr[index]
     }
     // SuperBonus methods
+    action(){
+        const actions = ["weapons", "block", "heal"]
+        return actions[Math.floor(Math.random() * actions.length)]
+    }
     block(rivalName){
         console.log(`${this.name} has BLOCKED ${rivalName}'s attack!`)
     }
@@ -26,10 +30,8 @@ class BadFood extends Food {
     }
     fight(rival){
         while(this.fresh && rival.fresh){
-            const actions = ["weapons", "block", "heal"]
-            // random select/ retrieve attack type : points/name
-            let myAction = actions[Math.floor(Math.random() * actions.length)]
-            let rivalAction = actions[Math.floor(Math.random() * actions.length)]
+            let myAction = this.action()
+            let rivalAction = rival.action()
             let scoreCard = `${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`
             // Display scores after each round 
             console.log(scoreCard)
