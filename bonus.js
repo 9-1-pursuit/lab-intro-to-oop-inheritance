@@ -15,62 +15,90 @@ class BadFood extends Food {
     }
     // SuperBonus - heal method
     heal() {
-        const val = this.daysToSpoil + 5
-       this.daysToSpoil = val
+        this.daysToSpoil += 5
+        // console.log(this.daysToSpoil)
     }
     fight(rival){
         // randomly selects an action (weapon, heal or block)
+        // const actions = ["weapons", "block", "heal"]
+        // Removing Heal
         const actions = ["weapons", "block", "heal"]
         let myHealth = this.daysToSpoil
         let rivalHealth = rival.daysToSpoil
-        let scoreCard = `\n${rival.name} ${rivalHealth} ${this.name} ${myHealth}` 
 
-        while(myHealth > 0 || rivalHealth > 0){
+        while(this.fresh && rival.fresh){
             // random select/ retrieve attack type : points/name
             let myAction = actions[Math.floor(Math.random() * actions.length)]
             let rivalAction = actions[Math.floor(Math.random() * actions.length)]
-            console.log("rival",rivalAction)
-            // string for scores
-            if(myAction === "heal"){
-                this.heal()
-                myHealth = this.daysToSpoil 
-                console.log(this.daysToSpoil)
-                console.log(`${this.name} used HEAL \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)   
-            }
-             if(rivalAction === "heal"){
-                rival.heal()
-                rivalHealth = rival.daysToSpoil 
-                console.log(rival.daysToSpoil)
-                console.log(`${rival.name} used HEAL \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)  
-            }
+            
+        //  Tried all combinations for heal (adding 5 to var, heal() and this.daysToSpoil, can't figure out why either infinite loop or change doesn't persist)
+            // if(myAction === "heal"){
+            //     this.heal()
+            //     myHealth + 5
+            //     console.log(myHealth)
+            //     console.log(`${this.name} used HEAL \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)   
+            //     continue;
+            // }
+            //  if(rivalAction === "heal"){
+            //     rival.heal()
+            //     rivalHealth + 5
+            //     console.log(rivalHealth)
+            //     console.log(`${rival.name} used HEAL \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`) 
+            //     continue;
+            // }
             
             // My Turn
-            else {
-                if(myAction === "weapons" && rivalAction !== "block"){
-                    const myIndex = Math.floor(Math.random() * this.weapons.length)
-                    let myAttackPoints = this.weapons[myIndex].hitPoints
-                    let myAttackName = this.weapons[myIndex].name
+            if(myAction === "weapons"){
+                const myIndex = Math.floor(Math.random() * this.weapons.length)
+                let myAttackPoints = this.weapons[myIndex].hitPoints
+                let myAttackName = this.weapons[myIndex].name
+                console.log(`${this.name} uses ${myAttackName}!!!`)
+                if(rivalAction !== "block"){
                     rivalHealth -= myAttackPoints
-                
-                    console.log(`${this.name} uses ${myAttackName}!! \n${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+                    console.log(`${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
                 }
-                 else if(myAction === "weapons" && rivalAction === "block"){
+                else if(rivalAction === "block"){
                     console.log(`${rival.name} has BLOCKED ${this.name}'s attack! \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
                 }
-                // Rivals Turn
-                if(rivalAction === "weapons" && myAction !== "block"){
+            }
+            // Rival's Turn 
+            if(rivalAction === "weapons"){
                 const rivalIndex = Math.floor(Math.random() * rival.weapons.length)
                 let rivalAttackPoints = rival.weapons[rivalIndex].hitPoints
                 let rivalAttackName = rival.weapons[rivalIndex].name
-                myHealth -= rivalAttackPoints
+                console.log(`${rival.name} uses ${rivalAttackName}!!!`)
+                if(myAction !== "block"){
+                    myHealth -= rivalAttackPoints
+                    console.log(`${this.name} is down ${rivalAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+                }
+                else if(myAction === "block"){
+                    console.log(`${this.name} has BLOCKED ${rival.name}'s attack! \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+                }
+            }
+                // if(myAction === "weapons" && rivalAction !== "block"){
+                //     const myIndex = Math.floor(Math.random() * this.weapons.length)
+                //     let myAttackPoints = this.weapons[myIndex].hitPoints
+                //     let myAttackName = this.weapons[myIndex].name
+                //     rivalHealth -= myAttackPoints
+                
+                //     console.log(`${this.name} uses ${myAttackName}!! \n${rival.name} is down ${myAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+                // }
+                //  else if(myAction === "weapons" && rivalAction === "block"){
+                //     console.log(`${rival.name} has BLOCKED ${this.name}'s attack! \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+                // }
+                // Rivals Turn
+            //     if(rivalAction === "weapons" && myAction !== "block"){
+            //     const rivalIndex = Math.floor(Math.random() * rival.weapons.length)
+            //     let rivalAttackPoints = rival.weapons[rivalIndex].hitPoints
+            //     let rivalAttackName = rival.weapons[rivalIndex].name
+            //     myHealth -= rivalAttackPoints
 
-                console.log(`${rival.name} uses ${rivalAttackName}!!! \n${this.name} is down ${rivalAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
-            }
-             else if(rivalAction === "weapons" && myAction === "block"){
-                console.log(`${this.name} has BLOCKED ${rival.name}'s attack! \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
-            }
+            //     console.log(`${rival.name} uses ${rivalAttackName}!!! \n${this.name} is down ${rivalAttackPoints} \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+            // }
+            //  else if(rivalAction === "weapons" && myAction === "block"){
+            //     console.log(`${this.name} has BLOCKED ${rival.name}'s attack! \n${rival.name} ${rivalHealth} ${this.name} ${myHealth}`)
+            // }
 
-            }
             if(myHealth < 0) {
                 this.fresh = false
                 return  `Better luck next time, ${rival.name} was better.`
@@ -78,20 +106,18 @@ class BadFood extends Food {
             if(rivalHealth < 0){
                 rival.fresh = false
                 return `${this.name} is the winner!` 
-            }
-           
+            }  
         }
-        // return rivalHealth <= 0 ? 
-        // `${this.name} is the winner!` : 
-        // `Better luck next time, ${rival.name} was better.`
     }  
 }
 
 const testDonut = new BadFood("Donut", 12, true, donut)
 const testPizza = new BadFood("Pizza", 14, true, pizza)
 // console.log(testDonut.prepare(), testPizza.prepare())
-console.log(testDonut.fight(testPizza))
+// console.log(testDonut.fight(testPizza))
 // console.log(testDonut.heal(), console.log(testDonut.daysToSpoil))
+
+console.log(testDonut.heal())
 
 /* 
     SUPER BONUS ADDITONALS
