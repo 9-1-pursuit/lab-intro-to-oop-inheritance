@@ -8,16 +8,6 @@ class Tamagotchi {
         this.sick = sick
         this.rehomed = rehomed
     }
-    // constructor({name, energy=9, full=8, mood=6, sick=false, rehomed=false}){
-    //     this.name = name
-    //     this.energy = energy
-    //     this.full = full
-    //     this.mood = mood
-    //     this.sick = sick
-    //     this.rehomed = rehomed
-    // }
-    // obj = Object.assign(this, {})
-    // check(){console.log(this.obj === this)}
     greet(){
         console.log(`Hello, I'm ${this.name}!`)
     }
@@ -88,11 +78,6 @@ class Tamagotchi {
         }
     }
 }
-const testObj = {name: "test", full:3, mood:5, sick:false, rehomed:false}
-const test = new Tamagotchi("test", 4,9,5, false, false )
-console.log(test.medicate(), test.sick)
-// const test2 = new Tamagotchi(testObj)
-// console.log(test2.status())
 
 // Do not edit below this line
 module.exports = Tamagotchi;
