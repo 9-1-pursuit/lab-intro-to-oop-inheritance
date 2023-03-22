@@ -11,7 +11,7 @@ class BadFood extends Food {
         const msg2 = `I am ${this.name} and you are just a passing trend!`
         const arr = [msg1, msg2]
         const index = Math.floor(Math.random() * arr.length)
-        console.log(arr[index])  
+        return arr[index]
     }
     // SuperBonus methods
     block(rivalName){
@@ -30,6 +30,9 @@ class BadFood extends Food {
             // random select/ retrieve attack type : points/name
             let myAction = actions[Math.floor(Math.random() * actions.length)]
             let rivalAction = actions[Math.floor(Math.random() * actions.length)]
+            let scoreCard = `${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`
+            // Display scores after each round 
+            console.log(scoreCard)
             
             // My Turn
             if(myAction === "weapons"){
@@ -37,20 +40,18 @@ class BadFood extends Food {
                 let myAttackPoints = this.weapons[myIndex].hitPoints
                 let myAttackName = this.weapons[myIndex].name
                 console.log(`${this.name} uses ${myAttackName}!!!`)
+                
                 if(rivalAction !== "block"){
                     rival.daysToSpoil -= myAttackPoints
-                    console.log(`${rival.name} is down ${myAttackPoints} \n${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
+                    console.log(`${rival.name} is down ${myAttackPoints}`)
                 }
                 else if(rivalAction === "block"){
                     rival.block(this.name)
-                    console.log(`${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
-                    // console.log(`${rival.name} has BLOCKED ${this.name}'s attack! \n${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
                 }
             }
             else {
                 if(myAction === "heal"){
                     this.heal()
-                    console.log(`${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
                 }
             }
             // Rival's Turn 
@@ -59,30 +60,26 @@ class BadFood extends Food {
                 let rivalAttackPoints = rival.weapons[rivalIndex].hitPoints
                 let rivalAttackName = rival.weapons[rivalIndex].name
                 console.log(`${rival.name} uses ${rivalAttackName}!!!`)
+                
                 if(myAction !== "block"){
                     this.daysToSpoil -= rivalAttackPoints
-                    console.log(`${this.name} is down ${rivalAttackPoints} \n${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
+                    console.log(`${this.name} is down ${rivalAttackPoints}`)
                 }
                 else if(myAction === "block"){
                     this.block(rival.name)
-                    console.log(`${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
-                    // console.log(`${this.name} has BLOCKED ${rival.name}'s attack! \n${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`)
                 }
             }
             else{
                 if(rivalAction === "heal"){
                     rival.heal()
-                    console.log(`${rival.name} ${rival.daysToSpoil} ${this.name} ${this.daysToSpoil}`) 
                 }
             }
             if(this.daysToSpoil < 0) {
                 this.fresh = false
-                // return  `Better luck next time, ${rival.name} was better.`
                 return rival.victory()
             }
             if(rival.daysToSpoil < 0){
                 rival.fresh = false
-                // return `${this.name} is the winner!` 
                 return this.victory()
             }  
         }
@@ -91,12 +88,9 @@ class BadFood extends Food {
 
 const testDonut = new BadFood("Donut", 12, true, donut)
 const testPizza = new BadFood("Pizza", 14, true, pizza)
-// console.log(testDonut.prepare(), testPizza.prepare())
+console.log(testDonut.prepare())
+console.log(testPizza.prepare())
 console.log(testDonut.fight(testPizza))
-// console.log(testDonut.heal(), console.log(testDonut.daysToSpoil))
-
-// console.log(testDonut.heal())
-
 /* 
     SUPER BONUS ADDITONALS
         - Add a heal method that allows the food to increase daysToSpoil
