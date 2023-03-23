@@ -34,7 +34,9 @@ class Tamagotchi{
             this.sick = false
         }
     }
-
+    medicate(){
+        this.sick === true ? ((this.full = 9), (this.energy = this.energy - 3), (this.sick = false)) : (console.log("refusal to take medicine"), this.energy--)
+    }
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
