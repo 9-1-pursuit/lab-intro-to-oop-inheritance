@@ -25,7 +25,16 @@ class Tamagotchi{
         I am this full: ${this.full}
         My energy is: ${this.energy} ${health}`)
     }
-    
+    eat(){
+        this.full = this.full + 2
+        this.energy--
+        if(this.full > 10){
+            this.sick = true
+        } else {
+            this.sick = false
+        }
+    }
+
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
