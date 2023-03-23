@@ -1,5 +1,5 @@
 // Create class below
-class food {
+class Food {
     constructor(name, daysToSpoil, fresh = true){
     this.name = name;
     this.daysToSpoil = daysToSpoil;
