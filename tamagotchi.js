@@ -74,5 +74,9 @@ class Tamagotchi{
         }
     }
 }
+
+const gekko = new Tamagotchi("Gekko")
+console.log(gekko.play())
+console.log(gekko.status())
 // Do not edit below this line
 module.exports = Tamagotchi;
