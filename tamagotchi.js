@@ -53,6 +53,10 @@ class Tamagotchi{
             this.full--
         }
     }
+    sleep(){
+        this.energy = this.energy + 4
+        this.full = this.full - 3
+    }
 }
 // Do not edit below this line
 module.exports = Tamagotchi;
