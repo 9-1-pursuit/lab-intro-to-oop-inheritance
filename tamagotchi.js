@@ -25,6 +25,54 @@ class Tamagotchi {
             this.sick = true
         }
     }
+    medicate(){
+        if(this.sick === true){
+            this.full = 9
+            this.energy = this.energy - 3
+            this.sick = false
+        } else {
+            console.log(`${this.name} refused to take medicine`)
+            this.energy--
+        }
+    }
+    play(){
+        if(this.sick === true){
+            console.log(`${this.name} cannot play because they are sick!`)
+            this.mood--
+            this.energy--
+        } else if (this.mood > 9){
+            this.energy = this.energy - 2
+            this.full--
+        } else if (this.energy <= 3){
+            console.log('I am too tired to play')
+            this.energy--
+        } else {
+            this.mood = this.mood + 2
+            this.energy--
+            this.full--
+        }
+    }
+    sleep(){
+        this.energy = this.energy + 4
+        this.full = this.full - 3
+    }
+    timePasses(){
+        if(this.sick === false){
+            this.mood = this.mood - 2
+            this.full--
+            this.energy--
+        } else if (this.sick === true){
+            this.mood = this.mood - 3
+            this.full = this.full - 2
+            this.energy = this.energy - 2
+        }
+    }
+    badGuardian(){
+        if(this.energy <= 0 || this.mood <= 0 || this.full <= 0){
+            this.rehomed = true
+            console.log('tamagotchi has been rehomed')
+        }
+    }
 }
 
 // Do not edit below this line
