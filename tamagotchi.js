@@ -16,7 +16,7 @@ class Tamagotchi {
         console.log(`My mood is: ${this.mood}`)
         console.log(`I am this full: ${this.full}`)
         console.log(`My energy is: ${this.energy}`)
-        console.log(this.isSick ? `I am sick` : 'I am not sick')
+        console.log(this.sick ? `I am sick` : 'I am not sick')
     }
     eat(){
         this.full = this.full + 2
@@ -75,5 +75,14 @@ class Tamagotchi {
     }
 }
 
+const john = new Tamagotchi('john')
+john.status()
+john.timePasses()
+john.status()
+john.eat()
+john.status()
+john.eat()
+john.status()
+console.log(john.sick)
 // Do not edit below this line
 module.exports = Tamagotchi;
