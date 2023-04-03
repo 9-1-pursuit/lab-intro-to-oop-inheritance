@@ -1,9 +1,9 @@
 // Create class below
 class Food {
-  constructor(name, daysToSpoil, fresh) {
-    this.name = "Banana"
-    this.daysToSpoil = 3
-    this.fresh = true
+  constructor(name, daysToSpoil, fresh = true) {
+    this.name = name
+    this.daysToSpoil = daysToSpoil
+    this.fresh = fresh
   }
   prepare() {
     console.log(`${this.name} is being prepared`)
@@ -13,12 +13,11 @@ class Food {
       console.log(
         `There are ${this.daysToSpoil} days left before ${this.name} spoils.`
       )
-    } else {
-      console.log(`eeewww what an old ${this.name} has spoiled.`)
     }
+    console.log(`${this.name} has spoiled.`)
   }
   aDayPasses() {
-    this.daysToSpoil--
+    this.daysToSpoil -= 1
     this.isFresh()
   }
 }
